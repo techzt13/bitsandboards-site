@@ -119,5 +119,36 @@
       </div>
     </section>
   </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main"><div><a class="brand" href="#" aria-label="Bits and Boards home"><svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><path d="M14 2v5m6-5v5m6-5v5M14 33v5m6-5v5m6-5v5M2 14h5m-5 6h5m-5 6h5m26-12h5m-5 6h5m-5 6h5M14 14h7a3 3 0 0 1 0 6h-7zm0 6h8a3 3 0 0 1 0 6h-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>bits<span class="brand-amp">&amp;</span>boards<span class="brand-dot">.</span></span></a><p>A little code. A little copper.<br>A whole lot of curiosity.</p></div><div class="footer-links"><div><span>EXPLORE</span><a href="#about">The club</a><a href="#builds">What we build</a><a href="#support">Support us</a></div><div><span>FIND US</span><p>Hong Kong, HK</p><p>Part of Hack Club</p><a href="https://hackclub.com" target="_blank" rel="noopener noreferrer">hackclub.com ↗</a></div></div></div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> BITS &amp; BOARDS. BUILT WITH CURIOSITY.</span><span>MADE BY STUDENTS, FOR STUDENTS <span class="footer-star">✳</span></span></div>
+    </div>
+  </footer>
+  <dialog class="join-dialog" id="join-dialog" aria-labelledby="join-title">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" aria-label="Close join form">×</button>
+      <div id="join-form-view">
+        <p class="overline">YOUR NEXT BUILD STARTS HERE</p>
+        <h2 id="join-title">Come build <span>with us.</span></h2>
+        <p class="dialog-intro">Tell us a little about yourself and what you'd love to make.</p>
+        <p class="form-notice">This preview doesn't send or save your details yet. Please don't submit sensitive information.</p>
+        <form id="join-form">
+          <label for="join-name">Name</label><input id="join-name" name="name" autocomplete="name" required maxlength="100" placeholder="Your name">
+          <label for="join-school">School / Year (Hong Kong)</label><input id="join-school" name="school" required maxlength="150" placeholder="e.g. School name / Year 10">
+          <label for="join-handle">Discord / WhatsApp handle</label><input id="join-handle" name="handle" required maxlength="150" placeholder="How can we reach you?">
+          <label for="join-track">Track interest</label><select id="join-track" name="track" required><option value="" selected disabled>Pick what excites you</option><option>Hardware &amp; Soldering</option><option>3D CAD</option><option>Web Dev</option><option>Everything</option></select>
+          <button class="button form-submit" type="submit">Continue <span aria-hidden="true">↗</span></button>
+        </form>
+      </div>
+      <div id="join-confirmation" hidden aria-live="polite">
+        <div class="confirmation-icon" aria-hidden="true">✳</div>
+        <p class="overline">READY TO BUILD</p><h2>Thanks for your <span>interest.</span></h2>
+        <p class="dialog-intro">Your details haven't been sent or saved. The club's signup connection is coming soon.</p>
+        <button class="button close-confirmation" type="button">Got it <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+  </dialog>
+  <script src="script.js" defer></script>
 </body>
 </html>
