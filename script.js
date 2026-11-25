@@ -68,14 +68,32 @@ form.addEventListener('submit', async (event) => {
       headers: { Accept: 'application/json' },
       signal: controller.signal,
     });
-    if (!response.ok) throw new Error('Form submission rejected');
+    let result;
+    try {
+      result = await response.json();
+    } catch (error) {
+      console.error('Invalid Formspree response:', error);
+      throw new Error('Formspree returned an unexpected response. Your request may not have been received.');
+    }
+    const errors = Array.isArray(result?.errors)
+      ? result.errors.map((item) => item?.message).filter((message) => typeof message === 'string')
+      : [];
+    if (typeof result?.error === 'string') errors.push(result.error);
+    if (!response.ok || (Array.isArray(result?.errors) && result.errors.length) || typeof result?.error === 'string') {
+      throw new Error(errors.join(' ') || `Formspree rejected the request (HTTP ${response.status}).`);
+    }
+    if (typeof result?.next !== 'string' && result?.ok !== true) {
+      throw new Error('Formspree returned an unexpected response. Your request may not have been received.');
+    }
     formView.hidden = true;
     confirmation.hidden = false;
     dialog.setAttribute('aria-labelledby', 'confirmation-title');
     document.querySelector('.close-confirmation').focus();
   } catch (error) {
     console.error('Join request failed:', error);
-    formError.textContent = 'We could not confirm your request was sent. Check your connection and try again, or contact the club if the problem persists.';
+    formError.textContent = error instanceof Error && error.name !== 'AbortError' && !(error instanceof TypeError)
+      ? error.message
+      : 'We could not confirm your request was sent. Check your connection before trying again.';
     formError.hidden = false;
   } finally {
     clearTimeout(timeout);
