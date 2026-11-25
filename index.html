@@ -132,19 +132,20 @@
         <p class="overline">YOUR NEXT BUILD STARTS HERE</p>
         <h2 id="join-title">Come build <span>with us.</span></h2>
         <p class="dialog-intro">Tell us a little about yourself and what you'd love to make.</p>
-        <p class="form-notice">This preview doesn't send or save your details yet. Please don't submit sensitive information.</p>
-        <form id="join-form">
+        <p class="form-notice">Your details will be sent to Bits &amp; Boards through Formspree so the club can contact you about joining. Please don't include sensitive information.</p>
+        <form id="join-form" action="https://formspree.io/f/mqpqwjql" method="POST">
           <label for="join-name">Name</label><input id="join-name" name="name" autocomplete="name" required maxlength="100" placeholder="Your name">
           <label for="join-school">School / Year (Hong Kong)</label><input id="join-school" name="school" required maxlength="150" placeholder="e.g. School name / Year 10">
           <label for="join-handle">Discord / WhatsApp handle</label><input id="join-handle" name="handle" required maxlength="150" placeholder="How can we reach you?">
           <label for="join-track">Track interest</label><select id="join-track" name="track" required><option value="" selected disabled>Pick what excites you</option><option>Hardware &amp; Soldering</option><option>3D CAD</option><option>Web Dev</option><option>Everything</option></select>
-          <button class="button form-submit" type="submit">Continue <span aria-hidden="true">↗</span></button>
+          <p id="join-error" class="form-error" role="alert" hidden></p>
+          <button class="button form-submit" type="submit">Send join request <span aria-hidden="true">↗</span></button>
         </form>
       </div>
       <div id="join-confirmation" hidden aria-live="polite">
         <div class="confirmation-icon" aria-hidden="true">✳</div>
-        <p class="overline">READY TO BUILD</p><h2>Thanks for your <span>interest.</span></h2>
-        <p class="dialog-intro">Your details haven't been sent or saved. The club's signup connection is coming soon.</p>
+        <p class="overline">READY TO BUILD</p><h2 id="confirmation-title">Thanks for your <span>interest.</span></h2>
+        <p class="dialog-intro">Your join request has been sent to Bits &amp; Boards.</p>
         <button class="button close-confirmation" type="button">Got it <span aria-hidden="true">↗</span></button>
       </div>
     </div>

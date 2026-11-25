@@ -4,7 +4,11 @@ const dialog = document.querySelector('#join-dialog');
 const form = document.querySelector('#join-form');
 const formView = document.querySelector('#join-form-view');
 const confirmation = document.querySelector('#join-confirmation');
+const formError = document.querySelector('#join-error');
+const submitButton = document.querySelector('.form-submit');
+const closeButton = document.querySelector('.dialog-close');
 let lastTrigger;
+let submitting = false;
 
 function closeMenu() {
   mobileNav.hidden = true;
@@ -27,25 +31,59 @@ document.querySelectorAll('.join-trigger').forEach((button) => {
     form.reset();
     formView.hidden = false;
     confirmation.hidden = true;
+    formError.hidden = true;
+    dialog.setAttribute('aria-labelledby', 'join-title');
     dialog.showModal();
     document.querySelector('#join-name').focus();
   });
 });
 
-document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+closeButton.addEventListener('click', () => dialog.close());
 document.querySelector('.close-confirmation').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => {
-  if (event.target === dialog) dialog.close();
+  if (event.target === dialog && !submitting) dialog.close();
+});
+dialog.addEventListener('cancel', (event) => {
+  if (submitting) event.preventDefault();
 });
 dialog.addEventListener('close', () => {
+  if (dialog.open) return;
   form.reset();
   if (lastTrigger) lastTrigger.focus();
 });
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  formView.hidden = true;
-  confirmation.hidden = false;
-  document.querySelector('.close-confirmation').focus();
+  if (submitting) return;
+  submitting = true;
+  formError.hidden = true;
+  submitButton.disabled = true;
+  closeButton.disabled = true;
+  submitButton.textContent = 'Sending…';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error('Form submission rejected');
+    formView.hidden = true;
+    confirmation.hidden = false;
+    dialog.setAttribute('aria-labelledby', 'confirmation-title');
+    document.querySelector('.close-confirmation').focus();
+  } catch (error) {
+    console.error('Join request failed:', error);
+    formError.textContent = 'We could not confirm your request was sent. Check your connection and try again, or contact the club if the problem persists.';
+    formError.hidden = false;
+  } finally {
+    clearTimeout(timeout);
+    submitting = false;
+    submitButton.disabled = false;
+    closeButton.disabled = false;
+    submitButton.textContent = 'Send join request ↗';
+  }
 });
 
 const previews = {

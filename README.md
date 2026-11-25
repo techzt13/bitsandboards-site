@@ -10,4 +10,4 @@ The `CNAME` file specifies `bitsandboards.xyz` for GitHub Pages. Configure Pages
 
 ## Join form
 
-The join form is a client-side preview only: it does not transmit or store submissions. Connect it to an approved signup service and update the form notice and confirmation before accepting real applications. Consider privacy and consent requirements for teenagers before collecting their details.
+The join form sends submissions to the Formspree endpoint configured in `index.html`. Configure and verify the notification email in Formspree, and check its dashboard for submissions. The form shows confirmation only after Formspree accepts a request; failures remain visible for retry. Review Formspree's data handling and applicable privacy and consent requirements for teenagers before collecting their details.
