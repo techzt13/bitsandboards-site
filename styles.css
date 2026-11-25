@@ -83,7 +83,7 @@ h1, h2, h3, p { margin: 0; }
 .section-kicker span:first-child { color: var(--copper); white-space: nowrap; }.section-kicker span:last-child { white-space: nowrap; }
 .kicker-line { flex: 1; height: 1px; background: var(--line); }
 .section-heading { margin: 56px 0 42px; }.split-heading { display: flex; justify-content: space-between; align-items: end; gap: 45px; }
-.overline { margin-bottom: 18px; color: var(--copper); font-size: 10px; letter-spacing: .12em; }
+p.overline { display: table; max-width: 100%; margin-bottom: 18px; padding-top: 8px; border-top: 1px solid currentColor; color: var(--copper); font-size: 10px; letter-spacing: .12em; line-height: 1.5; text-decoration: none; }
 h2 { font-size: clamp(38px, 4vw, 56px); letter-spacing: -.06em; line-height: 1.08; font-weight: 800; }
 h2 span { color: #93a295; }
 .split-heading > p { max-width: 420px; color: var(--muted); font-size: 14px; line-height: 1.9; }
