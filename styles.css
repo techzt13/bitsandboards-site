@@ -22,7 +22,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .site-header { position: sticky; top: 0; z-index: 40; background: rgba(10,15,13,.92); border-bottom: 1px solid #253029; backdrop-filter: blur(16px); }
 .nav-wrap { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: -.08em; white-space: nowrap; }
-.brand-mark { width: 35px; height: 35px; color: var(--copper); }
+.brand-mark { flex: 0 0 auto; width: 48px; height: 48px; object-fit: cover; border-radius: 50%; }
 .brand-amp, .brand-dot { color: var(--copper); }
 .desktop-nav, .nav-actions { display: flex; align-items: center; gap: 32px; }
 .desktop-nav a { color: #aab4aa; font-size: 13px; font-weight: 600; transition: color .2s; }
