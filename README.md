@@ -6,7 +6,7 @@ This is a zero-build static site. Serve the repository with any static file serv
 
 ## Publishing
 
-The `CNAME` file specifies `bitsandboards.xyz` for GitHub Pages. Configure Pages and the domain's DNS separately. The HCB donation URL is a placeholder and should be verified before launch.
+The `CNAME` file specifies `bitsandboards.xyz` for GitHub Pages. Configure Pages and the domain's DNS separately.
 
 ## Join form
 
